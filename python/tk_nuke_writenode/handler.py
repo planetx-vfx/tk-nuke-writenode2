@@ -155,9 +155,7 @@ class NukeWriteNodeHandler(object):
 
             write_data = write_node_data.data_knob.value()
 
-            self.__create_write(
-                write_node_settings, category, output_name, write_data
-            )
+            self.__create_write(write_node_settings, category, output_name, write_data)
 
     def knob_changed(self, node, knob):
         """Function called whenever any knob changes on
@@ -181,9 +179,7 @@ class NukeWriteNodeHandler(object):
                 write_node = nuke.toNode("Write1")
 
                 # Set file type
-                write_node["file_type"].setValue(
-                    configuration.get("file_type")
-                )
+                write_node["file_type"].setValue(configuration.get("file_type"))
 
                 # Set all knob settings
                 for knob, setting in settings.items():
@@ -255,7 +251,6 @@ class NukeWriteNodeHandler(object):
 
                 # If sequence path matches render path we know this is the one
                 if sequence_path == render_path:
-
                     # Create read node
                     read_node = nuke.createNode("Read")
 
@@ -294,9 +289,7 @@ class NukeWriteNodeHandler(object):
             # If placeholder node starts with ShotGridWriteNodePlaceholder, we
             # know this is the node we want to replace with a
             # correct write node
-            if placeholder_node.name().startswith(
-                "ShotGridWriteNodePlaceholder"
-            ):
+            if placeholder_node.name().startswith("ShotGridWriteNodePlaceholder"):
                 # Get write node settings
                 write_node_settings = self.__get_write_node_options()
 
@@ -337,9 +330,7 @@ class NukeWriteNodeHandler(object):
 
     def remove_callbacks(self):
         """Removes callbacks on destroy"""
-        nuke.removeOnScriptLoad(
-            self.convert_placeholder_nodes, nodeClass="Root"
-        )
+        nuke.removeOnScriptLoad(self.convert_placeholder_nodes, nodeClass="Root")
 
     def update_read_nodes(self):
         """Updates all read nodes to use published path instead
@@ -353,7 +344,6 @@ class NukeWriteNodeHandler(object):
 
         # Iterate trough all write nodes
         for write_node in write_nodes:
-
             # We only got a name, so we need to get the attributes
             write_node = nuke.toNode(write_node)
 
@@ -373,12 +363,9 @@ class NukeWriteNodeHandler(object):
             # set publish path
             read_path = node["file"].value()
             if read_path in image_sequences.keys():
-
                 # Calculate publish path
                 write_node = image_sequences.get(read_path)
-                published_path = self.__get_published_path(
-                    write_node, read_path
-                )
+                published_path = self.__get_published_path(write_node, read_path)
 
                 # Set publish path to read node
                 node["file"].setValue(published_path)
@@ -404,7 +391,6 @@ class NukeWriteNodeHandler(object):
             # If the group has the node "isShotGridWriteNode" we
             # know this is a ShotGrid write node
             if node.knob("isShotGridWriteNode"):
-
                 # If it is a ShotGrid write node, add it to the list
                 write_nodes.append(node.name())
 
@@ -429,7 +415,6 @@ class NukeWriteNodeHandler(object):
                 # If the node has the specified output_name, we
                 # know this is the node we are search for
                 if node["output"].value() == output_name:
-
                     # Position DAG to position of node
                     nuke.zoom(3, [node.xpos(), node.ypos()])
 
@@ -540,9 +525,7 @@ class NukeWriteNodeHandler(object):
 
             return colorspace
 
-    def __create_write(
-        self, write_node_settings, category, output_name, data_type
-    ):
+    def __create_write(self, write_node_settings, category, output_name, data_type):
         """Create write node using specified settings
 
         Args:
@@ -741,7 +724,6 @@ class NukeWriteNodeHandler(object):
                     # If write node matches our data type, we need
                     # these settings
                     if write_node.get("name") == data_type:
-
                         return write_node
 
     def __calculate_path(self, node, configuration):
@@ -803,7 +785,6 @@ class NukeWriteNodeHandler(object):
 
             # Now we have all the parameters necessary, lets set them
             with node:
-
                 write_node = nuke.toNode("Write1")
                 write_node["file"].setValue(render_path)
                 for knob, setting in settings.items():
@@ -823,8 +804,7 @@ class NukeWriteNodeHandler(object):
 
         else:
             nuke.message(
-                "Could not find configuration for node %s"
-                % node["name"].value()
+                "Could not find configuration for node %s" % node["name"].value()
             )
             return False
 
@@ -842,9 +822,7 @@ class NukeWriteNodeHandler(object):
         fields["version"] = fields["version"] + 1
 
         # Calculate path
-        new_script_file = script_template.apply_fields(fields).replace(
-            os.sep, "/"
-        )
+        new_script_file = script_template.apply_fields(fields).replace(os.sep, "/")
 
         # Save script with incremented path
         nuke.scriptSaveAs(new_script_file)
@@ -869,9 +847,7 @@ class NukeWriteNodeHandler(object):
         publish_template = self.get_node_publish_template(node)
 
         # Calculate path with fields from render path
-        publish_path = publish_template.apply_fields(render_fields).replace(
-            os.sep, "/"
-        )
+        publish_path = publish_template.apply_fields(render_fields).replace(os.sep, "/")
 
         return publish_path
 
