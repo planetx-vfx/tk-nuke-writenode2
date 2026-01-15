@@ -57,7 +57,7 @@ class TkNukeWriteNode(Application):
         self.handler.add_callbacks()
 
     def destroy_app(self):
-        self.log_debug("Destroying tk-nuke-writenode app")
+        self.log_debug("Destroying tk-nuke-writenode2 app")
 
         self.handler.remove_callbacks()
 

@@ -10,11 +10,11 @@ Group {
  addUserKnob {26 ""}
  addUserKnob {41 file T Write1.file}
  addUserKnob {26 ""}
- addUserKnob {22 renderLocal l render T "def render_local():\n    import sgtk\n    eng = sgtk.platform.current_engine()\n    app = eng.apps\[\"tk-nuke-writenode\"]\n    write_node = nuke.thisNode()\n    app.render_local(write_node)\nrender_local()" +STARTLINE}
- addUserKnob {22 renderOnFarm l "render on farm" -STARTLINE T "def render_farm():\n    import sgtk\n    eng = sgtk.platform.current_engine()\n    app = eng.apps\[\"tk-nuke-writenode\"]\n    write_node = nuke.thisNode()\n    app.render_farm(write_node)\nrender_farm()"}
+ addUserKnob {22 renderLocal l render T "def render_local():\n    import sgtk\n    eng = sgtk.platform.current_engine()\n    app = eng.apps\[\"tk-nuke-writenode2\"]\n    write_node = nuke.thisNode()\n    app.render_local(write_node)\nrender_local()" +STARTLINE}
+ addUserKnob {22 renderOnFarm l "render on farm" -STARTLINE T "def render_farm():\n    import sgtk\n    eng = sgtk.platform.current_engine()\n    app = eng.apps\[\"tk-nuke-writenode2\"]\n    write_node = nuke.thisNode()\n    app.render_farm(write_node)\nrender_farm()"}
  addUserKnob {41 Render +INVISIBLE T Write1.Render}
  addUserKnob {26 ""}
- addUserKnob {22 readFromWrite l "create read from write" T "def read_from_write():\n    import sgtk\n    eng = sgtk.platform.current_engine()\n    app = eng.apps\[\"tk-nuke-writenode\"]\n    write_node = nuke.thisNode()\n    app.read_from_write(write_node)\nread_from_write()" +STARTLINE}
+ addUserKnob {22 readFromWrite l "create read from write" T "def read_from_write():\n    import sgtk\n    eng = sgtk.platform.current_engine()\n    app = eng.apps\[\"tk-nuke-writenode2\"]\n    write_node = nuke.thisNode()\n    app.read_from_write(write_node)\nread_from_write()" +STARTLINE}
  addUserKnob {26 isShotGridWriteNode l "" +STARTLINE +INVISIBLE}
 }
  Input {
