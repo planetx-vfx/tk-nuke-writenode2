@@ -61,6 +61,14 @@ class TkNukeWriteNode(Application):
 
         self.handler.remove_callbacks()
 
+    def prepare_write(self, node):
+        """Function to prepare write node. Will set paths.
+
+        Args:
+            node (object): node to render locally
+        """
+        self.handler.prepare_write(node)
+
     def render_local(self, node):
         """Function to start rendering locally. Will set paths and render.
 

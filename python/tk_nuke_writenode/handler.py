@@ -36,7 +36,7 @@ class NukeWriteNodeHandler(object):
         """
 
         # Set paths for node
-        prepared_write = self.__prepare_write(node)
+        prepared_write = self.prepare_write(node)
 
         # If paths are set, render
         if prepared_write:
@@ -55,7 +55,7 @@ class NukeWriteNodeHandler(object):
         """
 
         # Set parameters for node before rendering
-        prepared_write = self.__prepare_write(node)
+        prepared_write = self.prepare_write(node)
         if prepared_write:
 
             # Using https://github.com/gillesvink/NukeDeadlineSubmission
@@ -771,7 +771,7 @@ class NukeWriteNodeHandler(object):
 
         return render_path
 
-    def __prepare_write(self, node):
+    def prepare_write(self, node):
         """Set all parameters when rendering.
         Will calculate paths and set them
 
