@@ -31,7 +31,7 @@ class TkNukeWriteNode(Application):
         # Registering commands
         create_write_node = lambda: self.handler.create_writenode()
         self.engine.register_command(
-            "NFA ShotGrid Write Node",
+            "PLX ShotGrid Write Node",
             create_write_node,
             dict(
                 type="node",
@@ -57,9 +57,17 @@ class TkNukeWriteNode(Application):
         self.handler.add_callbacks()
 
     def destroy_app(self):
-        self.log_debug("Destroying tk-nuke-writenode app")
+        self.log_debug("Destroying tk-nuke-writenode2 app")
 
         self.handler.remove_callbacks()
+
+    def prepare_write(self, node):
+        """Function to prepare write node. Will set paths.
+
+        Args:
+            node (object): node to render locally
+        """
+        self.handler.prepare_write(node)
 
     def render_local(self, node):
         """Function to start rendering locally. Will set paths and render.

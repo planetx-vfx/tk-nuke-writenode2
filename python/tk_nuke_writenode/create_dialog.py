@@ -53,12 +53,18 @@ class WriteNodePanel(nukescripts.PythonPanel):
         self.data_knob.setValues(data_modes)
         self.error_knob.setVisible(False)
 
+        if default_mode == self.main_category_name:
+            self.output_knob.setValue(self.main_write_name)
+            self.output_knob.setEnabled(False)
+            self.data_knob.setEnabled(False)
+
         # Set tooltips
         self.output_knob.setTooltip("Set the output name for the render node.")
         self.category_knob.setTooltip(
             "Select the category to set the render node to."
         )
         self.data_knob.setTooltip("Set the data type to render.")
+
 
     def knobChanged(self, knob):
         """This function is called whenever any knob changes
