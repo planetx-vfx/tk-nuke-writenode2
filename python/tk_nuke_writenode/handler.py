@@ -97,6 +97,9 @@ class NukeWriteNodeHandler(object):
         main_write_name = self.app.get_setting("main_write_name")
         default_category = self.app.get_setting("default_category")
 
+        if default_category not in write_node_settings.keys():
+            default_category = list(write_node_settings.keys())[0]
+
         # Give variables to write node panel
         write_node_data = WriteNodePanel(
             default_category,
