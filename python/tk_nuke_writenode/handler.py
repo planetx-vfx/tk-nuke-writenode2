@@ -858,6 +858,8 @@ class NukeWriteNodeHandler(object):
         render_template = self.get_node_render_template(node)
         render_fields = render_template.get_fields(path)
 
+        render_fields["output_name"] = render_fields.get("output")
+
         # Get publish template
         publish_template = self.get_node_publish_template(node)
 
