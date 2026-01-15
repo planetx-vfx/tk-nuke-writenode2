@@ -582,6 +582,10 @@ class NukeWriteNodeHandler(object):
         configuration = self.__get_node_settings(created_write)
         created_write["tile_color"].setValue(configuration.get("tile_color"))
 
+        # Disable group view
+        if created_write.knob("disable_group_view"):
+            created_write["disable_group_view"].setValue(True)
+
         # Get internal node settings
         settings = configuration.get("settings")
 
