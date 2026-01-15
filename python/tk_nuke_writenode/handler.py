@@ -773,6 +773,11 @@ class NukeWriteNodeHandler(object):
         fields["SEQ"] = "FORMAT: %d"
         fields["output"] = node["output"].value()
 
+        if "tk-nuke-multishot" in self.app.engine.apps:
+            multishot = self.app.engine.apps["tk-nuke-multishot"]
+            shot_var = multishot.get_setting("shot_variable_name")
+            fields["Shot"] = f"%{{{shot_var}}}"
+
         # Calculate path
         render_path = render_template.apply_fields(fields).replace(os.sep, "/")
 
